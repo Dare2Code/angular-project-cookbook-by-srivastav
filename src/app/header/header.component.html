@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="/" class="navbar-brand">Recipe Book</a>
+    </div>
+
+    <!-- -->
+    <div class="navbar-default">
+
+      <!-- Navigation Links -->
+      <ul class="nav navbar-nav">
+        <!-- if this router is active then a css class named 'active' is attached -->
+        <li routerLinkActive="active">
+          <a routerLink="/recipes">Recipes</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/shopping-list">Shopping List</a>
+        </li>
+        <!-- TEST Component -->
+        <li routerLinkActive="active">
+          <a routerLink="/test">test</a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown" style="cursor: pointer" appDropdown>
+          <a  class="dropdown-toggle" role="button">Manage
+            </a>
+          <ul class="dropdown-menu">
+            <li><a (click)="onSaveData()" >Save Data</a></li>
+            <li><a (click)="onFetchData()">Fetch Data</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

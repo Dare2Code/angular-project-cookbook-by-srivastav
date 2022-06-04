@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8">
+      <div class="form-group">
+
+        <!-- Project Form  -->
+        <form [formGroup]="projectForm" 
+              (ngSubmit)="onSubmit()">
+
+          <!-- 1st Form Group -->
+          <div formGroupName="projectInfo">
+            
+            <!-- Project Name -->
+            <div class="form-group">
+              <lable for="projectName">Project Name</lable>
+              <input type="text"
+                    name="projectName"
+                    id="projectName"
+                    class="form-control"
+                    formControlName="projectName">
+            </div>
+            
+            <!-- Project Email ID -->
+            <div class="form-group">
+              <lable for="projectEmail">Email ID</lable>
+              <input type="email"
+                    name="projectEmail"
+                    id="projectEmail"
+                    class="form-control"
+                    formControlName="projectEmail">
+            </div>
+          </div>
+          
+          <!-- 2nd Form Group -->
+          <div formGroupName="projectStatus">
+            
+            <!-- Project Status -->
+            <div class="form-group">
+              <lable for="projectStatus">Project Status</lable>
+              <select name="projectStatus" id="projectStatus" class="form-control">
+                <option *ngFor="let status of projectStatusList" [value]="status">{{status}}</option>
+              </select>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

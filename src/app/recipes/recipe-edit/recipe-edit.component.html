@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-xs-12">
+    <!-- use form group directive [formGroup] with square brackets because we have to pass some data 
+    to that directive via property binding and the data is our recipeForm 
+    then, we use the tag -> formControlName <- to bind the values to the form-->
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success" type="submit" [disabled]="!recipeForm.valid">Save</button>
+          <button class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" formControlName="name" id="name" class="form-control" placeholder="Enter Recipe Name">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input type="text" formControlName="imagePath" id="imagePath" class="form-control" #imagePath>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview the User linked Image -->
+      <div class="row">
+        <div class="col-xs-12">
+          <img [src]="imagePath.value" class="img-responsive">
+        </div>
+      </div>
+
+      <!-- Recipe Description -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" formControlName="description" id="description" class="form-control" rows="7"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Recipe Ingredients -->
+      <div class="row">
+        <div class="col-xs-12" formArrayName="ingredients" >
+          <!-- in this recipe array, we have form groups as each pair of name and amount -->
+          <div class="row" *ngFor="let ingredientControl of getRecipeFormControls(); let i = index" [formGroupName]="i" style="margin-bottom: 20px">
+
+            <!-- Add Ingredient Name -->
+            <div class="col-xs-8">
+              <input type="text" id="ingredient-nameID{{i}}" class="form-control" formControlName="name">
+            </div>
+            
+            <!-- Add Ingredient Amount -->
+            <div class="col-xs-2">
+              <input type="number" id="ingredient-amountID{{i}}" class="form-control" formControlName="amount">
+            </div>
+            
+            <!-- Delete Ingredient -->
+            <div class="col-xs-2">
+              <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)">X</button>
+            </div>
+          </div>
+
+          <!-- Add Ingredient -->
+          <div class="row">
+	          <div class="col-xs-12">
+              <button class="btn btn-success" type="button" (click)="onAddIngredient()" >Add Ingredient</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
